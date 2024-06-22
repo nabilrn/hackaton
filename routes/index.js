@@ -26,8 +26,12 @@ router.get("/beranda", checkRole("guru"), function (req, res, next) {
   res.render("./teacher/home", { title: "Home" });
 });
 router.get("/dashboard", checkRole("admin"), function (req, res, next) {
-  res.render("./admin/dashboard", { title: "Dashboard" });
+  res.render("./admin/home", { title: "Dashboard" });
 });
+router.get("/admin/uploadmateri", function (req, res, next) {
+  res.render("./admin/uploadmaterial", { title: "Upload" });
+});
+router.post("/uploadmateri", checkRole("admin"), admin.uploadMaterial);
 router.get("/student/profile", function (req, res, next) {
   res.render("./student/profile", { title: "Profile" });
 });

@@ -4,7 +4,7 @@
 <div class="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
     <!-- Card -->
     <div class="bg-white rounded-xl shadow p-4 sm:p-7">
-      <form>
+      <form action="/uploadmateri" method="post" >
         <!-- Section -->
         <div class="grid sm:grid-cols-12 gap-2 sm:gap-4 py-8 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200">
           <div class="sm:col-span-12">
@@ -28,7 +28,7 @@
                 id="kelas"
                 class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
               >
-                <option value="">Choose Class</option>
+                <option value="" disabled selected hidden>Choose Class</option>
                 <option value="1">SD-Kelas 1</option>
                 <option value="2">SD-Kelas 2</option>
                 <option value="3">SD-Kelas 3</option>
@@ -58,16 +58,16 @@
           <div class="sm:col-span-9">
             <div class="sm:flex">
                 <select
-                name="kelas"
-                id="kelas"
+                name="name"
+                id="name"
                 class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
               >
-                <option value="">Choose Topic</option>
-                <option value="1">Math</option>
-                <option value="2">English</option>
-                <option value="3">Physic</option>
-                <option value="4">Biology</option>
-                <option value="5">Chemistry</option>
+                <option value="" disabled selected hidden>Choose Topic</option>
+                <option value="math">Math</option>
+                <option value="english">English</option>
+                <option value="physics">Physics</option>
+                <option value="biology">Biology</option>
+                <option value="chemistry">Chemistry</option>
                 
 
               </select>
@@ -86,7 +86,7 @@
           <!-- End Col -->
   
           <div class="sm:col-span-9">
-            <input id="af-submit-application-phone" type="text" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+            <input id="af-submit-application-phone" type="text" name="title1" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
   
          
           </div>
@@ -95,14 +95,14 @@
           <div class="sm:col-span-3">
             <div class="inline-block">
               <label for="af-submit-application-current-company" class="inline-block text-sm font-medium text-gray-500 mt-2.5">
-                Sub Meterial
+                Sub Material
               </label>
             </div>
           </div>
           <!-- End Col -->
   
           <div class="sm:col-span-9">
-            <input id="af-submit-application-current-company" type="text" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+            <input id="af-submit-application-current-company" type="text" name="title2" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
           </div>
           <!-- End Col -->
           <!-- End Col -->
@@ -117,7 +117,7 @@
           <!-- End Col -->
   
           <div class="sm:col-span-9">
-            <input id="af-submit-application-current-company" type="text" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+            <input id="af-submit-application-current-company" type="text" name="title3" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
           </div>
           <!-- End Col -->
           <!-- End Col -->
@@ -132,7 +132,7 @@
           <!-- End Col -->
   
           <div class="sm:col-span-9">
-            <input id="af-submit-application-current-company" type="text" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+            <input id="af-submit-application-current-company" type="text" name="title4" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
           </div>
           <!-- End Col -->
           <div class="sm:col-span-3">
@@ -145,7 +145,7 @@
           <!-- End Col -->
   
           <div class="sm:col-span-9">
-            <input id="af-submit-application-current-company" type="text" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+            <input id="af-submit-application-current-company" type="text" name="title5" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
           </div>
           <!-- End Col -->
           <div class="sm:col-span-3">
@@ -158,7 +158,7 @@
           <!-- End Col -->
   
           <div class="sm:col-span-9">
-            <input id="af-submit-application-current-company" type="text" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+            <input id="af-submit-application-current-company" type="text" name="title6" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
           </div>
           <!-- End Col -->
           <div class="sm:col-span-3">
@@ -171,7 +171,7 @@
           <!-- End Col -->
   
           <div class="sm:col-span-9">
-            <input id="af-submit-application-current-company" type="text" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+            <input id="af-submit-application-current-company" type="text" name="title7" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
           </div>
           <!-- End Col -->
           <div class="sm:col-span-3">
@@ -184,7 +184,7 @@
           <!-- End Col -->
   
           <div class="sm:col-span-9">
-            <input id="af-submit-application-current-company" type="text" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+            <input id="af-submit-application-current-company" type="text" name="title8" class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
           </div>
           <!-- End Col -->
         </div>
@@ -197,7 +197,7 @@
   
         <!-- Section -->
        
-        <button type="button" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-pirus text-white hover:bg-piruss disabled:opacity-50 disabled:pointer-events-none">
+        <button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-pirus text-white hover:bg-piruss disabled:opacity-50 disabled:pointer-events-none">
           Submit 
         </button>
       </form>
