@@ -25,7 +25,7 @@ router.get("/home", checkRole("siswa"), function (req, res, next) {
 router.get("/beranda", checkRole("guru"), function (req, res, next) {
   res.render("./teacher/home", { title: "Home" });
 });
-router.get("/dashboard", checkRole("admin"), function (req, res, next) {
+router.get("/admin/dashboard", checkRole("admin"), function (req, res, next) {
   res.render("./admin/home", { title: "Dashboard" });
 });
 router.get("/admin/uploadmateri", function (req, res, next) {
@@ -46,6 +46,12 @@ router.get("/admin/material", function (req, res, next) {
 });
 router.get("/admin/teacher", function (req, res, next) {
   res.render("./admin/listteacher", { title: "List Teacher" });
+});
+router.get("/admin/make_schedule", function (req, res, next) {
+  res.render("./admin/makeschedule", { title: "Make Schedule" });
+});
+router.get("/admin/request", function (req, res, next) {
+  res.render("./admin/request", { title: "Request" });
 });
 
 
