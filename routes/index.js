@@ -44,6 +44,9 @@ router.get("/admin/upload", function (req, res, next) {
 router.get("/admin/material", function (req, res, next) {
   res.render("./admin/listmaterial", { title: "List Material" });
 });
+router.get("/admin/teacher", function (req, res, next) {
+  res.render("./admin/listteacher", { title: "List Teacher" });
+});
 
 
 router.post("/", auth.login);
