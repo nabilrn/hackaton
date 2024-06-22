@@ -114,8 +114,14 @@ router.get("/teacher/register", function (req, res, next) {
 router.get("/admin/upload", function (req, res, next) {
   res.render("./admin/uploadmaterial", { title: "Upload Material" });
 });
+router.get("/teacher/upload", function (req, res, next) {
+  res.render("./teacher/uploadmaterial", { title: "Upload Material" });
+});
 router.get("/admin/material", function (req, res, next) {
   res.render("./admin/listmaterial", { title: "List Material" });
+});
+router.get("/teacher/material", function (req, res, next) {
+  res.render("./teacher/listmaterial", { title: "List Material" });
 });
 router.get("/admin/teacher", async (req, res, next) => {
   try {
@@ -154,6 +160,9 @@ router.get("/student/topics/detail", function (req, res, next) {
 });
 router.get("/student/request", function (req, res, next) {
   res.render("./student/request", { title: "Request For Meeting" });
+});
+router.get("/student/notif", function (req, res, next) {
+  res.render("./student/notification", { title: "Notification" });
 });
 
 router.post("/", auth.login);

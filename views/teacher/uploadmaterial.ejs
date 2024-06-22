@@ -1,0 +1,197 @@
+<%- include("sidebar.ejs") %>
+<main class="w-full pt-10 px-4 sm:px-6 md:px-8 lg:pl-72">
+  <!-- Card Section -->
+  <div class="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <!-- Card -->
+    <div class="bg-white rounded-xl shadow p-4 sm:p-7">
+      <form action="/uploadmateri" method="post" id="uploadForm">
+        <!-- Section -->
+        <div
+          class="grid sm:grid-cols-12 gap-2 sm:gap-4 py-8 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200"
+        >
+          <div class="sm:col-span-12">
+            <h2 class="text-lg font-semibold text-gray-800">Upload Material</h2>
+          </div>
+          <!-- End Col -->
+
+          <div class="sm:col-span-3">
+            <label
+              for="education_level"
+              class="inline-block text-sm font-medium text-gray-500 mt-2.5"
+            >
+              Education Level
+            </label>
+          </div>
+          <!-- End Col -->
+
+          <div class="sm:col-span-9">
+            <div class="sm:flex">
+              <select
+                name="education_level"
+                id="education_level"
+                class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                required
+                aria-label="Education Level"
+              >
+                <option value="" disabled selected hidden>
+                  Education Level
+                </option>
+                <option value="elementary">Elementary School</option>
+                <option value="junior">Junior High School</option>
+                <option value="senior">Senior High School</option>
+              </select>
+            </div>
+          </div>
+          <!-- End Col -->
+
+          <div class="sm:col-span-3">
+            <label
+              for="class"
+              class="inline-block text-sm font-medium text-gray-500 mt-2.5"
+            >
+              Class
+            </label>
+          </div>
+          <!-- End Col -->
+
+          <div class="sm:col-span-9">
+            <div class="sm:flex">
+              <select
+                name="class"
+                id="class"
+                class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                required
+                aria-label="Class"
+              >
+                <option value="" disabled selected hidden>Choose Class</option>
+              </select>
+            </div>
+          </div>
+          <!-- End Col -->
+
+          <div class="sm:col-span-3">
+            <label
+              for="topic"
+              class="inline-block text-sm font-medium text-gray-500 mt-2.5"
+            >
+              Text Material</label
+            >
+          </div>
+          <!-- End Col -->
+
+          <div class="sm:col-span-9">
+            <textarea
+              id="topic"
+              name="topic"
+              class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+              rows="10"
+              required
+              aria-label="Title 1"
+            ></textarea>
+          </div>
+          <!-- End Col -->
+
+          <div class="sm:col-span-3">
+            <label
+              for="af-submit-application-resume-cv"
+              class="inline-block text-sm font-medium text-gray-500 mt-2.5"
+            >
+              Pdf Material
+            </label>
+          </div>
+          <!-- End Col -->
+
+          <div class="sm:col-span-9">
+            <label for="af-submit-application-resume-cv" class="sr-only"
+              >Choose file</label
+            >
+            <input
+              type="file"
+              name="cv"
+              accept=".pdf"
+              id="af-submit-application-resume-cv"
+              class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4"
+            />
+          </div>
+          <!-- End Col -->
+          <div class="sm:col-span-3">
+            <label
+              for="af-submit-application-resume-cv"
+              class="inline-block text-sm font-medium text-gray-500 mt-2.5"
+            >
+              Video Material
+            </label>
+          </div>
+          <!-- End Col -->
+
+          <div class="sm:col-span-9">
+            <input
+              id="af-submit-application-full-name"
+              type="text"
+              class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+              name="name"
+            />
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Section -->
+
+        <!-- Submit Button -->
+        <div class="mt-5 flex justify-end gap-x-2">
+          <button
+            type="submit"
+            class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-pirus text-white hover:bg-piruss disabled:opacity-50 disabled:pointer-events-none"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<script>
+  const educationLevelSelect = document.getElementById("education_level");
+  const classSelect = document.getElementById("class");
+
+  const classes = {
+    elementary: Array.from({ length: 6 }, (_, i) => ({
+      value: String(i + 1),
+      text: `Elementary School Grade ${i + 1}`,
+    })),
+    junior: Array.from({ length: 3 }, (_, i) => ({
+      value: String(i + 7),
+      text: `Junior High School Grade ${i + 1}`,
+    })),
+    senior: Array.from({ length: 3 }, (_, i) => ({
+      value: String(i + 10),
+      text: `Senior High School Grade ${i + 1}`,
+    })),
+  };
+
+  educationLevelSelect.addEventListener("change", function () {
+    const selectedLevel = this.value;
+    classSelect.innerHTML =
+      '<option value="" disabled selected hidden>Choose Class</option>';
+
+    if (classes[selectedLevel]) {
+      classSelect.innerHTML += classes[selectedLevel]
+        .map((cls) => `<option value="${cls.value}">${cls.text}</option>`)
+        .join("");
+    }
+  });
+
+  // Basic form validation
+  document
+    .getElementById("uploadForm")
+    .addEventListener("submit", function (e) {
+      const requiredFields = this.querySelectorAll("[required]");
+      for (let field of requiredFields) {
+        if (!field.value) {
+          e.preventDefault();
+          alert("Please fill out all required fields.");
+          return;
+        }
+      }
+    });
+</script>
