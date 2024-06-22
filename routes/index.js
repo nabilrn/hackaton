@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const jwt = require("jsonwebtoken");
+const router = express.Router();
+const login = require("../controller/auth");
+const siswa = require("../controller/siswa");
+const guru = require("../controller/guru");
+const admin = require("../controller/admin");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get("/login", login.page);
+router.get("/", login.page);
+router.post("/", login.login);
 
 module.exports = router;
