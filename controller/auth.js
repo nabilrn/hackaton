@@ -60,12 +60,14 @@ exports.login = async (req, res) => {
           res.render("teacher/home", {
             accessToken,
             pengguna,
+            title: "Home",
           });
           break;
         case "admin":
-          res.render("admin/dashboard", {
+          res.render("admin/home", {
             accessToken,
             pengguna,
+            title: "Dashboard",
           });
           break;
         default:
