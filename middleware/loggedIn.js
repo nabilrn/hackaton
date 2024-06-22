@@ -10,7 +10,7 @@ function redirectIfLoggedIn(req, res, next) {
 
       switch (role) {
         case "admin":
-          res.redirect("/dashboard");
+          res.redirect("/admin/dashboard");
           break;
         case "guru":
           res.redirect("/beranda");

@@ -1,21 +1,21 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Material extends Model {
+  class Subject extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Material.hasMany(models.Topic, {
-        foreignKey: "idMaterial",
+      Subject.hasMany(models.Topic, {
+        foreignKey: "idSubject",
         onDelete: "SET NULL",
         onUpdate: "CASCADE",
       });
     }
   }
-  Material.init(
+  Subject.init(
     {
       id: {
         allowNull: false,
@@ -34,8 +34,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Material",
+      modelName: "Subject",
     }
   );
-  return Material;
+  return Subject;
 };

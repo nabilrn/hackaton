@@ -1,4 +1,4 @@
-const { Material, Topic, SubTopic } = require("../models/index");
+const { Subject, Topic, SubTopic } = require("../models/index");
 
 exports.uploadMaterial = async (req, res) => {
   try {
@@ -13,12 +13,12 @@ exports.uploadMaterial = async (req, res) => {
       title6,
       title7,
     } = req.body;
-    const material = await Material.create({
+    const subject = await Subject.create({
       name: name,
       kelas: kelas,
     });
     const topic = await Topic.create({
-      idMaterial: material.id,
+      idSubject: subject.id,
       title: title1,
     });
     if (title2) {
@@ -59,7 +59,7 @@ exports.uploadMaterial = async (req, res) => {
     }
 
     res.status(201).json({
-      message: "Material created successfully",
+      message: "Subject created successfully",
     });
   } catch (err) {
     res.status(500).json({
