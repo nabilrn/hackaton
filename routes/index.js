@@ -17,6 +17,9 @@ router.get("/login", function (req, res, next) {
 router.get("/student/register", function (req, res, next) {
   res.render("./student/register", { title: "Register" });
 });
+router.get("/student/home", function (req, res, next) {
+  res.render("./student/home", { title: "Home" });
+});
 router.get("/teacher/register", function (req, res, next) {
   res.render("./teacher/register", { title: "Register" });
 });

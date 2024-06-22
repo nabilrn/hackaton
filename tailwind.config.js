@@ -12,6 +12,14 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
+      colors: {
+        pirus: "rgba(0,199,202,255)",
+      },
+      backgroundColor: {
+        customGray: "rgba(243,244,246,255)",
+        pirus: "rgba(0,199,202,255)",
+        piruss: "rgb(4,180,188)"
+      },
     },
   },
   plugins: [require("preline/plugin")],
