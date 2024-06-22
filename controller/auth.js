@@ -130,23 +130,7 @@ exports.registerTeacher = async (req, res) => {
     bankAccount,
   } = req.body;
 
-  const generateFilename = (originalname) => {
-    const ext = path.extname(originalname);
-    const sanitizedFilename = email.replace(/\s+/g, "_").toLowerCase();
-    return `${sanitizedFilename}${ext}`;
-  };
-
-  const cv =
-    req.file && isPDF(req.file)
-      ? generateFilename(req.file.originalname)
-      : null;
-
-  // Rename the file to include the new filename
-  if (cv && req.file) {
-    const oldPath = req.file.path;
-    const newPath = path.join(path.dirname(oldPath), cv);
-    fs.renameSync(oldPath, newPath);
-  }
+  const cv = req.file && isPDF(req.file) ? req.file.filename : null;
 
   console.log("cv", cv);
 

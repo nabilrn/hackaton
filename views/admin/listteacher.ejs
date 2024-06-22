@@ -97,53 +97,60 @@
               </thead>
   
               <tbody class="divide-y divide-gray-200">
+                <% teachers.forEach((teachers, index) => { %>
+
                 <tr class="bg-white hover:bg-gray-50">
                   <td class="size-px whitespace-nowrap">
                     <button type="button" class="block" data-hs-overlay="#hs-modal-recover-account">
                       <span class="block px-6 py-2">
-                        <span class="font-mono text-sm ">cv.pdf</span>
+                        <span class="font-mono text-sm "><a
+                          href="/cv/<%= teachers.cv %>"
+                          target="_blank"
+                        >
+                          Preview CV
+                        </a></span>
                       </span>
                     </button>
                   </td>
                   <td class="size-px whitespace-nowrap">
                     <button type="button" class="block" data-hs-overlay="#hs-modal-recover-account">
                       <span class="block px-6 py-2">
-                        <span class="text-sm text-gray-600">Khalied</span>
+                        <span class="text-sm text-gray-600"><%= teachers.User.name%></span>
                       </span>
                     </button>
                   </td>
                   <td class="size-px whitespace-nowrap">
                     <button type="button" class="block" data-hs-overlay="#hs-modal-recover-account">
                       <span class="block px-6 py-2">
-                        <span class="text-sm text-gray-600">081275584870</span>
+                        <span class="text-sm text-gray-600"><%= teachers.phone %></span>
                       </span>
                     </button>
                   </td>
                   <td class="size-px whitespace-nowrap">
                     <button type="button" class="block" data-hs-overlay="#hs-modal-recover-account">
                         <span class="block px-6 py-2">
-                            <span class="text-sm text-gray-600">Balai Baru</span>
+                            <span class="text-sm text-gray-600"><%= teachers.address %></span>
                           </span>
                     </button>
                   </td>
                   <td class="size-px whitespace-nowrap">
                     <button type="button" class="block" data-hs-overlay="#hs-modal-recover-account">
                       <span class="block px-6 py-2">
-                        <span class="text-sm text-gray-600">Membuat Donat</span>
+                        <span class="text-sm text-gray-600"><%= teachers.speciality %></span>
                       </span>
                     </button>
                   </td>
                   <td class="size-px whitespace-nowrap">
                     <button type="button" class="block" data-hs-overlay="#hs-modal-recover-account">
                       <span class="block px-6 py-2">
-                        <span class="text-sm text-gray-600">32328449</span>
+                        <span class="text-sm text-gray-600"><%= teachers.bankAccount %></span>
                       </span>
                     </button>
                   </td>
                   <td class="size-px whitespace-nowrap">
                     <button type="button" class="block" data-hs-overlay="#hs-modal-recover-account">
                       <span class="block px-6 py-2">
-                        <span class="text-sm text-gray-600">Request</span>
+                        <span class="text-sm text-gray-600" style="text-transform: capitalize;"><%= teachers.status %></span>
                       </span>
                     </button>
                   </td>
@@ -160,7 +167,7 @@
                       </span>
                     </button>
                   </td>
-               
+               <% }) %>
                 </tr>
   
               
