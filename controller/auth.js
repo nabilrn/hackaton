@@ -1,7 +1,13 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config();
+const multer = require("multer");
 const { User, Teacher } = require("../models/index");
+
+function isPDF(file) {
+  const allowedExtensions = /(\.pdf)$/i;
+  return allowedExtensions.test(file.originalname);
+}
 
 exports.login = async (req, res) => {
   try {
@@ -9,34 +15,16 @@ exports.login = async (req, res) => {
       where: { email: req.body.email },
     });
     if (!pengguna) {
-      return res.render("login", {
-        alert: {
-          type: "error",
-          title: "Login failed",
-          text: "email atau Password Salah",
-        },
-      });
+      return res.json({ msg: "email atau Password Salah" });
     }
     const match = await bcrypt.compare(req.body.password, pengguna.password);
 
     if (req.body.password === "" || req.body.email === "") {
-      return res.render("login", {
-        alert: {
-          type: "error",
-          title: "Login failed",
-          text: "email atau Password Salah",
-        },
-      });
+      res.json({ msg: "Email atau password tidak valid" });
     }
 
     if (!match) {
-      return res.render("login", {
-        alert: {
-          type: "error",
-          title: "Login failed",
-          text: "email atau Password Salah",
-        },
-      });
+      return res.json({ msg: "email atau Password Salah" });
     }
     if (match) {
       const userId = pengguna.id;
@@ -62,13 +50,14 @@ exports.login = async (req, res) => {
 
       switch (role) {
         case "siswa":
-          res.render("siswa/home", {
+          res.render("student/home", {
             accessToken,
             pengguna,
+            title: "Home",
           });
           break;
         case "guru":
-          res.render("guru/home", {
+          res.render("teacher/home", {
             accessToken,
             pengguna,
           });
@@ -127,9 +116,21 @@ exports.registerSiswa = async (req, res) => {
 };
 
 exports.registerTeacher = async (req, res) => {
-  const { name, email, password, passwordLagi, phone, address, speciality } =
-    req.body;
-  const cv = req.file.filename;
+  const {
+    name,
+    email,
+    password,
+    passwordLagi,
+    phone,
+    address,
+    speciality,
+    bankAccount,
+  } = req.body;
+
+  const cv = req.file && isPDF(req.file) ? req.file.filename : null;
+
+  console.log("cv", cv);
+
   if (
     !name ||
     !email ||
@@ -138,7 +139,8 @@ exports.registerTeacher = async (req, res) => {
     !phone ||
     !address ||
     !speciality ||
-    !cv
+    !cv ||
+    !bankAccount
   ) {
     return res.status(400).json({ message: "Semua Bidang harus Diisi" });
   }
@@ -158,13 +160,16 @@ exports.registerTeacher = async (req, res) => {
   try {
     const salt = await bcrypt.genSalt();
     const hashPass = await bcrypt.hash(password, salt);
-    await Teacher.create({
+    const newTeacher = await Teacher.create({
       cv: cv,
       phone: phone,
       address: address,
       speciality: speciality,
     });
+
+    // Use the id from the newTeacher instance
     await User.create({
+      idTeacher: newTeacher.id, // Correctly reference the id of the new teacher
       name: name,
       email: email,
       password: hashPass,
