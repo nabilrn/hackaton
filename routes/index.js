@@ -9,7 +9,15 @@ const upload = require("../middleware/uploadFile");
 const verif = require("../middleware/verifyToken");
 const redirectIfLoggedIn = require("../middleware/loggedIn");
 const checkRole = require("../middleware/checkRole");
-const { Subject, Topic, SubTopic, Teacher, User } = require("../models/index");
+const {
+  Subject,
+  Topic,
+  SubTopic,
+  Teacher,
+  User,
+  Request,
+} = require("../models/index");
+const { where } = require("sequelize");
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -131,11 +139,66 @@ router.get("/admin/teacher", async (req, res, next) => {
     next(error);
   }
 });
-router.get("/admin/make_schedule", function (req, res, next) {
-  res.render("./admin/makeschedule", { title: "Make Schedule" });
+router.get("/admin/addmeeting/:id", async (req, res, next) => {
+  try {
+    const idTeacher = req.params.id;
+    const teachers = await Teacher.findOne({
+      where: {
+        id: idTeacher,
+      },
+      include: [
+        {
+          model: User,
+        },
+      ],
+    });
+    res.render("./admin/editteacher", { teachers, title: "Edit Teacher" });
+  } catch (error) {
+    next(error);
+  }
 });
-router.get("/admin/request", function (req, res, next) {
-  res.render("./admin/request", { title: "Request" });
+router.post("/addMeeting/:id", checkRole("admin"), admin.addMeeting);
+router.get("/admin/make_schedule", async (req, res, next) => {
+  try {
+    const teachers = await Teacher.findAll({
+      where: { status: "accept" },
+      include: [
+        {
+          model: User,
+        },
+      ],
+    });
+    res.render("./admin/makeschedule", { teachers, title: "Make Schedule" });
+  } catch (error) {
+    next(error);
+  }
+});
+router.post("/addschedule", checkRole("admin"), admin.makeSchedule);
+router.get("/admin/request", async (req, res, next) => {
+  try {
+    const request = await Request.findAll({
+      include: [
+        {
+          model: User,
+          model: SubTopic,
+          include: [
+            {
+              model: Topic,
+              include: [
+                {
+                  model: Subject,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+
+    res.render("./admin/request", { request, title: "Request" });
+  } catch (error) {
+    next(error);
+  }
 });
 router.get("/student/material/shs", function (req, res, next) {
   res.render("./student/sma", { title: "SHS Material" });

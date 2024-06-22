@@ -80,34 +80,36 @@
                   </thead>
       
                   <tbody class="divide-y divide-gray-200">
-                    <tr class="bg-white hover:bg-gray-50">
+                    <% request.forEach(req => { %>
+                      <tr class="bg-white hover:bg-gray-50">
                       <td class="size-px whitespace-nowrap">
                           <span class="block px-6 py-2">
-                            <span class="text-sm text-gray-600">Bil</span>
+                            <span class="text-sm text-gray-600"><%= req.User.name %></span>
                           </span>
                       </td>
                       <td class="size-px whitespace-nowrap">
                           <span class="block px-6 py-2">
-                            <span class="text-sm text-gray-600">Math</span>
+                            <span class="text-sm text-gray-600"><%= req.Subject.name %></span>
                           </span>
                       </td>
                       <td class="size-px whitespace-nowrap">
                             <span class="block px-6 py-2">
-                                <span class="text-sm text-gray-600">Trigonometri</span>
+                                <span class="text-sm text-gray-600"><%= req.Topic.title %></span>
                               </span>
                       </td>
                       <td class="size-px whitespace-nowrap">
                           <span class="block px-6 py-2">
-                            <span class="text-sm text-gray-600">Sin Cos Tan</span>
+                            <span class="text-sm text-gray-600"><%= req.SubTopic.title %></span>
                           </span>
                       </td>
                       <td class="size-px whitespace-nowrap">
                           <span class="block px-6 py-2">
-                            <span class="text-sm text-gray-600">Request</span>
+                            <span class="text-sm text-gray-600"><%= req.status %></span>
                           </span>
                       </td>
                   
                     </tr>
+                    <% }) %>
       
                   
       
