@@ -1,0 +1,43 @@
+<%- include("sidebar.ejs") %>
+<!-- Content -->
+<main class="w-full pt-10 px-4 sm:px-6 md:px-8 lg:pl-72">
+
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
+        <div class="p-4 sm:p-7">
+          <div class="text-center">
+            <h2 class="block text-2xl font-bold text-gray-800">Set schedule for Meeting</h2>
+          </div>
+          <div class="mt-5">
+            <form id="nim-form" action="" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="permohonanBpId" id="permohonanBpId">
+              <div class="grid gap-y-4">
+                <div class="relative">
+                  <label for="bpLama" class="block text-sm font-medium text-gray-700">Subject</label>
+                  <input type="text" id="bpLama" name="bpLama" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required />
+                </div>
+                <div class="relative">
+                    <label for="photo" class="block text-sm font-medium text-gray-700">Topic</label>
+                    <input type="text" id="photo" name="photo" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required />
+                </div>
+                <div class="relative">
+                  <label for="video" class="block text-sm font-medium text-gray-700">Subtopic</label>
+                  <input type="text" id="video" name="video" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" />
+                </div>
+             
+                
+              </div>
+              <div class="flex justify-end items-center gap-x-2 p-4 sm:px-7">
+                <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" onclick="closeModal()">Cancel</button>
+                <button id="submitBtn" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-pirus text-white hover:bg-piruss disabled:opacity-50 disabled:pointer-events-none" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+</main>
+<!-- End Content -->
+<!-- ========== END MAIN CONTENT ========== -->
+<script src="/preline.js"></script>
+</body>
+</html>

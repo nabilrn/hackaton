@@ -100,14 +100,23 @@ router.get("/admin/make_schedule", function (req, res, next) {
 router.get("/admin/request", function (req, res, next) {
   res.render("./admin/request", { title: "Request" });
 });
-router.get("/student/material/sma", function (req, res, next) {
-  res.render("./student/sma", { title: "Material sma" });
+router.get("/student/material/shs", function (req, res, next) {
+  res.render("./student/sma", { title: "SHS Material" });
+});
+router.get("/student/material/jhs", function (req, res, next) {
+  res.render("./student/smp", { title: "JHS Material" });
+});
+router.get("/student/material/ems", function (req, res, next) {
+  res.render("./student/sd", { title: "EMS Material" });
 });
 router.get("/student/topics", function (req, res, next) {
   res.render("./student/topics", { title: "Topics" });
 });
 router.get("/student/topics/detail", function (req, res, next) {
   res.render("./student/topicsdetail", { title: "Topics Details" });
+});
+router.get("/student/request", function (req, res, next) {
+  res.render("./student/request", { title: "Request For Meeting" });
 });
 
 router.post("/", auth.login);
