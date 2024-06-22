@@ -9,6 +9,31 @@ const upload = require("../middleware/uploadFile");
 const verif = require("../middleware/verifyToken");
 const redirectIfLoggedIn = require("../middleware/loggedIn");
 const checkRole = require("../middleware/checkRole");
+const { Subject, Topic, SubTopic } = require("../models/index");
+const { Model } = require("sequelize");
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, "0");
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = monthNames[date.getMonth()];
+  const year = date.getFullYear();
+
+  return day + " " + month + " " + year;
+}
 
 router.get("/", redirectIfLoggedIn, function (req, res, next) {
   res.render("index", { title: "Express" });
@@ -31,6 +56,30 @@ router.get("/dashboard", checkRole("admin"), function (req, res, next) {
 router.get("/admin/uploadmateri", function (req, res, next) {
   res.render("./admin/uploadmaterial", { title: "Upload" });
 });
+router.get("/admin/material", checkRole("admin"), async (req, res, next) => {
+  try {
+    const subtopics = await SubTopic.findAll({
+      include: [
+        {
+          model: Topic,
+          include: [
+            {
+              model: Subject,
+            },
+          ],
+        },
+      ],
+    });
+
+    res.render("./admin/listmaterial", {
+      subtopics,
+      formatDate,
+      title: "List Subject",
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 router.post("/uploadmateri", checkRole("admin"), admin.uploadMaterial);
 router.get("/student/profile", function (req, res, next) {
   res.render("./student/profile", { title: "Profile" });
@@ -44,7 +93,6 @@ router.get("/admin/upload", function (req, res, next) {
 router.get("/admin/material", function (req, res, next) {
   res.render("./admin/listmaterial", { title: "List Material" });
 });
-
 
 router.post("/", auth.login);
 router.post("/logout", auth.logout);

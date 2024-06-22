@@ -38,6 +38,9 @@ module.exports = (sequelize, DataTypes) => {
       bankAccount: {
         type: DataTypes.STRING,
       },
+      status: {
+        type: DataTypes.ENUM("request", "reject", "accept"),
+      },
     },
     {
       sequelize,

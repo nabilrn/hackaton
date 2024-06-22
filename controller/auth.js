@@ -3,11 +3,12 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config();
 const multer = require("multer");
 const { User, Teacher } = require("../models/index");
+const path = require("path");
+const fs = require("fs");
 
-function isPDF(file) {
-  const allowedExtensions = /(\.pdf)$/i;
-  return allowedExtensions.test(file.originalname);
-}
+const isPDF = (file) => {
+  return file.mimetype === "application/pdf";
+};
 
 exports.login = async (req, res) => {
   try {
@@ -129,7 +130,23 @@ exports.registerTeacher = async (req, res) => {
     bankAccount,
   } = req.body;
 
-  const cv = req.file && isPDF(req.file) ? req.file.filename : null;
+  const generateFilename = (originalname) => {
+    const ext = path.extname(originalname);
+    const sanitizedFilename = email.replace(/\s+/g, "_").toLowerCase();
+    return `${sanitizedFilename}${ext}`;
+  };
+
+  const cv =
+    req.file && isPDF(req.file)
+      ? generateFilename(req.file.originalname)
+      : null;
+
+  // Rename the file to include the new filename
+  if (cv && req.file) {
+    const oldPath = req.file.path;
+    const newPath = path.join(path.dirname(oldPath), cv);
+    fs.renameSync(oldPath, newPath);
+  }
 
   console.log("cv", cv);
 
@@ -167,6 +184,8 @@ exports.registerTeacher = async (req, res) => {
       phone: phone,
       address: address,
       speciality: speciality,
+      bankAccount: bankAccount,
+      status: "request",
     });
 
     // Use the id from the newTeacher instance
