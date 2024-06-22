@@ -38,6 +38,14 @@ router.get("/student/profile", function (req, res, next) {
 router.get("/teacher/register", function (req, res, next) {
   res.render("./teacher/register", { title: "Register" });
 });
+router.get("/admin/upload", function (req, res, next) {
+  res.render("./admin/uploadmaterial", { title: "Upload Material" });
+});
+router.get("/admin/material", function (req, res, next) {
+  res.render("./admin/listmaterial", { title: "List Material" });
+});
+
+
 router.post("/", auth.login);
 router.post("/logout", auth.logout);
 router.post("/studentRegis", auth.registerSiswa);
