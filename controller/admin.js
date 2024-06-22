@@ -1,4 +1,10 @@
-const { Subject, Topic, SubTopic } = require("../models/index");
+const {
+  Subject,
+  Topic,
+  SubTopic,
+  Meeting,
+  Teacher,
+} = require("../models/index");
 const isPDF = (file) => {
   return file.mimetype === "application/pdf";
 };
@@ -113,5 +119,64 @@ exports.editDetail = async (req, res) => {
       status: "failed",
       message: err.message,
     });
+  }
+};
+
+exports.addMeeting = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { tanggal, jam, link } = req.body;
+    console.log("idGuru", id);
+    console.log("tanggal", tanggal);
+    console.log("jam", jam);
+    console.log("link", link);
+
+    await Meeting.create({
+      idTeacher: id,
+      tanggal: tanggal,
+      jam: jam,
+      link: link,
+    });
+
+    await Teacher.update(
+      {
+        status: "accept",
+      },
+      {
+        where: {
+          id: id,
+        },
+      }
+    );
+
+    res.status(200).json({
+      message: "Teacher updated successfully",
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "failed",
+      message: err.message,
+    });
+  }
+};
+
+exports.makeSchedule = async (req, res) => {
+  try {
+    const { tanggal, jam, link, idTeacher } = req.body;
+    console.log("idGuru", idTeacher);
+    console.log("tanggal", tanggal);
+    console.log("jam", jam);
+    console.log("link", link);
+    await Meeting.create({
+      idTeacher: idTeacher,
+      tanggal: tanggal,
+      jam: jam,
+      link: link,
+    });
+    res.status(200).json({
+      message: "Meeting created successfully",
+    });
+  } catch (error) {
+    next(error);
   }
 };

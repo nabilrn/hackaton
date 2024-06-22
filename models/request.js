@@ -1,58 +1,63 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Request extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.belongsTo(models.Teacher, {
-        foreignKey: "idTeacher",
-        onDelete: "SET NULL",
-        onUpdate: "CASCADE",
-      });
-      User.hasMany(models.Meeting, {
+      Request.belongsTo(models.User, {
         foreignKey: "idUser",
         onDelete: "SET NULL",
         onUpdate: "CASCADE",
       });
-      User.hasMany(models.Request, {
-        foreignKey: "idUser",
+      Request.belongsTo(models.Subject, {
+        foreignKey: "idSubject",
+        onDelete: "SET NULL",
+        onUpdate: "CASCADE",
+      });
+      Request.belongsTo(models.Topic, {
+        foreignKey: "idTopic",
+        onDelete: "SET NULL",
+        onUpdate: "CASCADE",
+      });
+      Request.belongsTo(models.SubTopic, {
+        foreignKey: "idSubTopic",
         onDelete: "SET NULL",
         onUpdate: "CASCADE",
       });
     }
   }
-  User.init(
+  Request.init(
     {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.STRING,
-      },
-      email: {
-        type: DataTypes.STRING,
-      },
-      password: {
-        type: DataTypes.STRING,
-      },
-      name: {
-        type: DataTypes.STRING,
-      },
-      role: {
-        type: DataTypes.STRING,
-      },
-      idTeacher: {
         type: DataTypes.INTEGER,
+      },
+      idUser: {
+        type: DataTypes.INTEGER,
+      },
+      idSubject: {
+        type: DataTypes.INTEGER,
+      },
+      idTopic: {
+        type: DataTypes.INTEGER,
+      },
+      idSubTopic: {
+        type: DataTypes.INTEGER,
+      },
+      status: {
+        type: DataTypes.ENUM("request", "reject", "accept"),
       },
     },
     {
       sequelize,
-      modelName: "User",
+      modelName: "Request",
     }
   );
-  return User;
+  return Request;
 };

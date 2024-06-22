@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "SET NULL",
         onUpdate: "CASCADE",
       });
+      Teacher.hasMany(models.Meeting, {
+        foreignKey: "idTeacher",
+        onDelete: "SET NULL",
+        onUpdate: "CASCADE",
+      });
     }
   }
   Teacher.init(

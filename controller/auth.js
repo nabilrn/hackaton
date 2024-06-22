@@ -111,7 +111,7 @@ exports.registerSiswa = async (req, res) => {
       role: "siswa",
     });
 
-    res.json({ msg: "Registrasi berhasil" });
+    res.redirect("/login");
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Registrasi gagal, coba lagi nanti" });
@@ -181,7 +181,7 @@ exports.registerTeacher = async (req, res) => {
       role: "guru",
     });
 
-    res.json({ msg: "Registrasi berhasil" });
+    res.redirect("/login");
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Registrasi gagal, coba lagi nanti" });

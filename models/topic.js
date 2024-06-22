@@ -18,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "SET NULL",
         onUpdate: "CASCADE",
       });
+      Topic.hasMany(models.Request, {
+        foreignKey: "idTopic",
+        onDelete: "SET NULL",
+        onUpdate: "CASCADE",
+      });
     }
   }
   Topic.init(
