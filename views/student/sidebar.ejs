@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self' https://www.youtube.com;">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%- title %></title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
@@ -181,7 +183,8 @@
                 data-hs-accordion-always-open
               >
                 <li class="hs-accordion" id="users-accordion-sub-1">
-                  <button
+                  <a
+                    href="/student/material/sma"
                     type="button"
                     class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-white hs-accordion-active:hover:bg-transparent text-sm text-white hover:text-white rounded-lg hover:bg-piruss"
                   >
@@ -201,7 +204,7 @@
                     >
                       <path d="m18 15-6-6-6 6" />
                     </svg>
-
+                </a>
                 </li>
                 <li class="hs-accordion" id="users-accordion-sub-1">
                   <button

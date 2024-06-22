@@ -81,9 +81,7 @@ router.get("/admin/material", checkRole("admin"), async (req, res, next) => {
   }
 });
 router.post("/uploadmateri", checkRole("admin"), admin.uploadMaterial);
-router.get("/student/profile", function (req, res, next) {
-  res.render("./student/profile", { title: "Profile" });
-});
+
 router.get("/teacher/register", function (req, res, next) {
   res.render("./teacher/register", { title: "Register" });
 });
@@ -101,6 +99,15 @@ router.get("/admin/make_schedule", function (req, res, next) {
 });
 router.get("/admin/request", function (req, res, next) {
   res.render("./admin/request", { title: "Request" });
+});
+router.get("/student/material/sma", function (req, res, next) {
+  res.render("./student/sma", { title: "Material sma" });
+});
+router.get("/student/topics", function (req, res, next) {
+  res.render("./student/topics", { title: "Topics" });
+});
+router.get("/student/topics/detail", function (req, res, next) {
+  res.render("./student/topicsdetail", { title: "Topics Details" });
 });
 
 router.post("/", auth.login);
