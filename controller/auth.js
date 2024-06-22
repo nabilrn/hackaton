@@ -15,34 +15,16 @@ exports.login = async (req, res) => {
       where: { email: req.body.email },
     });
     if (!pengguna) {
-      return res.render("login", {
-        alert: {
-          type: "error",
-          title: "Login failed",
-          text: "email atau Password Salah",
-        },
-      });
+      return res.json({ msg: "email atau Password Salah" });
     }
     const match = await bcrypt.compare(req.body.password, pengguna.password);
 
     if (req.body.password === "" || req.body.email === "") {
-      return res.render("login", {
-        alert: {
-          type: "error",
-          title: "Login failed",
-          text: "email atau Password Salah",
-        },
-      });
+      res.json({ msg: "Email atau password tidak valid" });
     }
 
     if (!match) {
-      return res.render("login", {
-        alert: {
-          type: "error",
-          title: "Login failed",
-          text: "email atau Password Salah",
-        },
-      });
+      return res.json({ msg: "email atau Password Salah" });
     }
     if (match) {
       const userId = pengguna.id;
@@ -68,13 +50,14 @@ exports.login = async (req, res) => {
 
       switch (role) {
         case "siswa":
-          res.render("siswa/home", {
+          res.render("student/home", {
             accessToken,
             pengguna,
+            title: "Home",
           });
           break;
         case "guru":
-          res.render("guru/home", {
+          res.render("teacher/home", {
             accessToken,
             pengguna,
           });
