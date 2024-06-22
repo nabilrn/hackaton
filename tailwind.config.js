@@ -14,11 +14,15 @@ module.exports = {
       },
       colors: {
         pirus: "rgba(0,199,202,255)",
+        piruss: "rgb(4,180,188)",
+        pirusss: "rgba(196,242,242,255)"
+
       },
       backgroundColor: {
         customGray: "rgba(243,244,246,255)",
         pirus: "rgba(0,199,202,255)",
-        piruss: "rgb(4,180,188)"
+        piruss: "rgb(4,180,188)",
+        pirusss: "rgba(196,242,242,255)"
       },
     },
   },
