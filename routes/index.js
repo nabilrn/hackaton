@@ -18,8 +18,17 @@ router.get("/student/register", function (req, res, next) {
 router.get("/student/home", function (req, res, next) {
   res.render("./student/home", { title: "Home" });
 });
+router.get("/student/course/sma", function (req, res, next) {
+  res.render("./student/sma", { title: "Course Sma" });
+});
 router.get("/teacher/register", function (req, res, next) {
   res.render("./teacher/register", { title: "Register" });
+});
+router.get("/admin/dashboard", function (req, res, next) {
+  res.render("./admin/home", { title: "Dashboard" });
+});
+router.get("/admin/upload", function (req, res, next) {
+  res.render("./admin/uploadmaterial", { title: "Upload Material" });
 });
 
 module.exports = router;
