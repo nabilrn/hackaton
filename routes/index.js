@@ -9,8 +9,7 @@ const upload = require("../middleware/uploadFile");
 const verif = require("../middleware/verifyToken");
 const redirectIfLoggedIn = require("../middleware/loggedIn");
 const checkRole = require("../middleware/checkRole");
-const { Subject, Topic, SubTopic } = require("../models/index");
-const { Model } = require("sequelize");
+const { Subject, Topic, SubTopic, Teacher, User } = require("../models/index");
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -80,7 +79,34 @@ router.get("/admin/material", checkRole("admin"), async (req, res, next) => {
     next(error);
   }
 });
+router.get("/editcontent/:id", checkRole("admin"), async (req, res, next) => {
+  try {
+    const idSubtopic = req.params.id;
+    const subtopic = await SubTopic.findOne({
+      where: {
+        id: idSubtopic,
+      },
+    });
+
+    res.render("./admin/editcontent", {
+      subtopic,
+      formatDate,
+      title: "Edit Content",
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 router.post("/uploadmateri", checkRole("admin"), admin.uploadMaterial);
+router.post(
+  "/editDetail/:id",
+  checkRole("admin"),
+  upload.fields([
+    { name: "file", maxCount: 1 },
+    { name: "picture", maxCount: 1 },
+  ]),
+  admin.editDetail
+);
 router.get("/student/profile", function (req, res, next) {
   res.render("./student/profile", { title: "Profile" });
 });
@@ -93,8 +119,19 @@ router.get("/admin/upload", function (req, res, next) {
 router.get("/admin/material", function (req, res, next) {
   res.render("./admin/listmaterial", { title: "List Material" });
 });
-router.get("/admin/teacher", function (req, res, next) {
-  res.render("./admin/listteacher", { title: "List Teacher" });
+router.get("/admin/teacher", async (req, res, next) => {
+  try {
+    const teachers = await Teacher.findAll({
+      include: [
+        {
+          model: User,
+        },
+      ],
+    });
+    res.render("./admin/listteacher", { teachers, title: "List Teacher" });
+  } catch (error) {
+    next(error);
+  }
 });
 router.get("/admin/make_schedule", function (req, res, next) {
   res.render("./admin/makeschedule", { title: "Make Schedule" });

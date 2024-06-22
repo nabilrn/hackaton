@@ -12,10 +12,10 @@
             <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
               <div>
                 <h2 class="text-xl font-semibold text-gray-800">
-                  List Material
+                  List Subject
                 </h2>
                 <p class="text-sm text-gray-600">
-                  Create material, edit and more.
+                  Create Subject, edit and more.
                 </p>
               </div>
   
@@ -91,14 +91,14 @@
                     <td class="size-px whitespace-nowrap">
                       <button type="button" class="block" data-hs-overlay="#hs-modal-recover-account">
                         <span class="block px-6 py-2">
-                          <span class="font-mono text-sm"><%= subtopic.Topic.Material.kelas %></span>
+                          <span class="font-mono text-sm"><%= subtopic.Topic.Subject.kelas %></span>
                         </span>
                       </button>
                     </td>
                     <td class="size-px whitespace-nowrap">
                       <button type="button" class="block" data-hs-overlay="#hs-modal-recover-account">
                         <span class="block px-6 py-2">
-                          <span class="text-sm text-gray-600" style="text-transform: capitalize;"><%= subtopic.Topic.Material.name %></span>
+                          <span class="text-sm text-gray-600" style="text-transform: capitalize;"><%= subtopic.Topic.Subject.name %></span>
                         </span>
                       </button>
                     </td>
@@ -119,7 +119,7 @@
                     <td class="size-px whitespace-nowrap">
                       <button type="button" class="block" data-hs-overlay="#hs-modal-recover-account">
                         <span class="block px-6 py-2">
-                          <span class="text-sm text-gray-600"><%= formatDate(subtopic.Topic.Material.createdAt) %></span>
+                          <span class="text-sm text-gray-600"><%= formatDate(subtopic.Topic.Subject.createdAt) %></span>
                         </span>
                       </button>
                     </td>
@@ -131,7 +131,7 @@
                       </button>
                     </td>
                     <td class="size-px whitespace-nowrap">
-                      <button type="button" class="block" data-hs-overlay="#hs-modal-recover-account">
+                      <a type="button" class="block" data-hs-overlay="#hs-modal-recover-account" href="/editcontent/<%= subtopic.id %>">
                         <span class="px-6 py-1.5">
                           <span class="py-1 px-2 inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm">
                             <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -141,7 +141,7 @@
                             View
                           </span>
                         </span>
-                      </button>
+                      </>
                     </td>
                   </tr>
                 <% }) %>
@@ -189,44 +189,7 @@
   </div>
   <!-- End Table Section -->
  <!-- Modal -->
-<div id="hs-modal-recover-account" class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto">
-    <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
-      <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
-        <div class="p-4 sm:p-7">
-          <div class="text-center">
-            <h2 class="block text-2xl font-bold text-gray-800">Add Material Detail</h2>
-          </div>
-          <div class="mt-5">
-            <form id="nim-form" action="/admin/updateNim" method="post" enctype="multipart/form-data">
-              <input type="hidden" name="permohonanBpId" id="permohonanBpId">
-              <div class="grid gap-y-4">
-                <div class="relative">
-                  <label for="bpLama" class="block text-sm font-medium text-gray-700">Konten</label>
-                  <textarea id="bpLama" name="bpLama" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required></textarea>
-                </div>
-                <div class="relative">
-                  <label for="file" class="block text-sm font-medium text-gray-700">File</label>
-                  <input type="file" id="file" name="file" class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4" />
-                </div>
-                <div class="relative">
-                  <label for="video" class="block text-sm font-medium text-gray-700">Video</label>
-                  <input type="text" id="video" name="video" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" />
-                </div>
-                <div class="relative">
-                  <label for="photo" class="block text-sm font-medium text-gray-700">Photo</label>
-                  <input type="file" id="photo" name="photo" class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4" />
-                </div>
-              </div>
-              <div class="flex justify-end items-center gap-x-2 p-4 sm:px-7">
-                <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" onclick="closeModal()">Cancel</button>
-                <button id="submitBtn" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-pirus text-white hover:bg-piruss disabled:opacity-50 disabled:pointer-events-none" type="submit">Submit</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <!-- End Modal -->
 </main>
 
