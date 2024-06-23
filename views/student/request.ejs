@@ -8,23 +8,55 @@
             <h2 class="block text-2xl font-bold text-gray-800">Set schedule for Meeting</h2>
           </div>
           <div class="mt-5">
-            <form id="nim-form" action="" method="post" enctype="multipart/form-data">
-              <input type="hidden" name="permohonanBpId" id="permohonanBpId">
+            <form id="nim-form" action="/requestkelas" method="post">
               <div class="grid gap-y-4">
                 <div class="relative">
-                  <label for="bpLama" class="block text-sm font-medium text-gray-700">Subject</label>
-                  <input type="text" id="bpLama" name="bpLama" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required />
+                  <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                  <select
+                    name="idSubject"
+                    id="subject"
+                    class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                  >
+                    <option value="" disabled selected hidden>Choose Subject</option>
+                    <% subjects.forEach(subject => { %>
+                      <option value="<%= subject.id %>" style="text-transform: capitalize;"><%= subject.name %></option>
+                    <% }) %>
+                  </select>
                 </div>
+                <!-- Topic Dropdown -->
                 <div class="relative">
-                    <label for="photo" class="block text-sm font-medium text-gray-700">Topic</label>
-                    <input type="text" id="photo" name="photo" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required />
+                  <label for="topic" class="block text-sm font-medium text-gray-700">Topic</label>
+                  <select
+                    name="idTopic"
+                    id="topic"
+                    class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                  >
+                    <option value="" disabled selected hidden>Choose Topic</option>
+                    <% subjects.forEach(subject => { %>
+                      <% subject.Topics.forEach(topic => { %>
+                        <option value="<%= topic.id %>"><%= topic.title %></option>
+                      <% }) %>
+                    <% }) %>
+                  </select>
                 </div>
+                <!-- Subtopic Dropdown -->
                 <div class="relative">
-                  <label for="video" class="block text-sm font-medium text-gray-700">Subtopic</label>
-                  <input type="text" id="video" name="video" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" />
+                  <label for="subtopic" class="block text-sm font-medium text-gray-700">Subtopic</label>
+                  <select
+                    name="idSubTopic"
+                    id="subtopic"
+                    class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                  >
+                    <option value="" disabled selected hidden>Choose Subtopic</option>
+                    <% subjects.forEach(subject => { %>
+                      <% subject.Topics.forEach(topic => { %>
+                        <% topic.SubTopics.forEach(subtopic => { %>
+                          <option value="<%= subtopic.id %>"><%= subtopic.title %></option>
+                        <% }) %>
+                      <% }) %>
+                    <% }) %>
+                  </select>
                 </div>
-             
-                
               </div>
               <div class="flex justify-end items-center gap-x-2 p-4 sm:px-7">
                 <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" onclick="closeModal()">Cancel</button>

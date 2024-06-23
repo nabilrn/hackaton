@@ -23,6 +23,11 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "SET NULL",
         onUpdate: "CASCADE",
       });
+      User.hasMany(models.Notifikasi, {
+        foreignKey: "penerima",
+        onDelete: "SET NULL",
+        onUpdate: "CASCADE",
+      });
     }
   }
   User.init(

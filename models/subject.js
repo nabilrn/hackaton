@@ -18,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "SET NULL",
         onUpdate: "CASCADE",
       });
+      Subject.belongsTo(models.Teacher, {
+        foreignKey: "idTeacher",
+        onDelete: "SET NULL",
+        onUpdate: "CASCADE",
+      });
     }
   }
   Subject.init(
@@ -34,6 +39,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       kelas: {
         allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      idTeacher: {
         type: DataTypes.INTEGER,
       },
     },
