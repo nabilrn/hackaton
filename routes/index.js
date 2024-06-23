@@ -300,6 +300,10 @@ router.post(
   verif.verifyToken,
   siswa.requestClass
 );
+router.get("/student/settings", function (req, res, next) {
+  res.render("./student/setting", { title: "Setting" });
+});
+
 
 router.post("/", auth.login);
 router.post("/logout", auth.logout);
