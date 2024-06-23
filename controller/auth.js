@@ -58,6 +58,12 @@ exports.login = async (req, res) => {
           });
           break;
         case "guru":
+          const guru = await Teacher.findOne({
+            where: { id: pengguna.idTeacher },
+          });
+          if (guru.status === "request") {
+            return res.status(401).json({ msg: "Guru belum terdaftar" });
+          }
           res.render("teacher/home", {
             accessToken,
             pengguna,

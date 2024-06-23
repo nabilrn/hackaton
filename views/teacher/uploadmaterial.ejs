@@ -4,7 +4,12 @@
   <div class="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
     <!-- Card -->
     <div class="bg-white rounded-xl shadow p-4 sm:p-7">
-      <form action="/uploadmateri" method="post" id="uploadForm">
+      <form
+        action="/uploadmateri"
+        method="post"
+        id="uploadForm"
+        enctype="multipart/form-data"
+      >
         <!-- Section -->
         <div
           class="grid sm:grid-cols-12 gap-2 sm:gap-4 py-8 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200"
@@ -19,36 +24,6 @@
               for="education_level"
               class="inline-block text-sm font-medium text-gray-500 mt-2.5"
             >
-              Education Level
-            </label>
-          </div>
-          <!-- End Col -->
-
-          <div class="sm:col-span-9">
-            <div class="sm:flex">
-              <select
-                name="education_level"
-                id="education_level"
-                class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                required
-                aria-label="Education Level"
-              >
-                <option value="" disabled selected hidden>
-                  Education Level
-                </option>
-                <option value="elementary">Elementary School</option>
-                <option value="junior">Junior High School</option>
-                <option value="senior">Senior High School</option>
-              </select>
-            </div>
-          </div>
-          <!-- End Col -->
-
-          <div class="sm:col-span-3">
-            <label
-              for="class"
-              class="inline-block text-sm font-medium text-gray-500 mt-2.5"
-            >
               Class
             </label>
           </div>
@@ -57,17 +32,65 @@
           <div class="sm:col-span-9">
             <div class="sm:flex">
               <select
-                name="class"
-                id="class"
+                name="kelas"
+                id="kelas"
                 class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                required
-                aria-label="Class"
               >
                 <option value="" disabled selected hidden>Choose Class</option>
+                <% guru.forEach(guru => { %>
+                <option value="<%= guru.Subject.kelas %>">1 - SD</option>
+                <% }) %>
               </select>
             </div>
           </div>
           <!-- End Col -->
+
+          <div class="sm:col-span-3">
+            <label
+              for="kelas"
+              class="inline-block text-sm font-medium text-gray-500 mt-2.5"
+            >
+              Subject
+            </label>
+          </div>
+          <!-- End Col -->
+
+          <div class="sm:col-span-9">
+            <div class="sm:flex">
+              <select
+                name="kelas"
+                id="kelas"
+                class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+              >
+                <option value="" disabled selected hidden>Choose Class</option>
+                <% guru.forEach(guru => { %>
+                <option value="<%= guru.id %>"><%= guru.Subject.name %></option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+
+          <div class="sm:col-span-3">
+            <label
+              for="topic"
+              class="inline-block text-sm font-medium text-gray-500 mt-2.5"
+            >
+              Topic</label
+            >
+          </div>
+          <!-- End Col -->
+
+          <div class="sm:col-span-9">
+            <input
+              id="topic"
+              name="title"
+              class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+              rows="10"
+              type="text"
+              required
+              aria-label="Title 1"
+            />
+          </div>
 
           <div class="sm:col-span-3">
             <label
@@ -82,7 +105,7 @@
           <div class="sm:col-span-9">
             <textarea
               id="topic"
-              name="topic"
+              name="content"
               class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
               rows="10"
               required
@@ -107,7 +130,7 @@
             >
             <input
               type="file"
-              name="cv"
+              name="file"
               accept=".pdf"
               id="af-submit-application-resume-cv"
               class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4"
@@ -129,7 +152,7 @@
               id="af-submit-application-full-name"
               type="text"
               class="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-              name="name"
+              name="video"
             />
           </div>
           <!-- End Col -->
