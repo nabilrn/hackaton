@@ -227,6 +227,9 @@ router.get("/student/request", function (req, res, next) {
 router.get("/student/notif", function (req, res, next) {
   res.render("./student/notification", { title: "Notification" });
 });
+router.get("/student/settings", function (req, res, next) {
+  res.render("./student/setting", { title: "Setting" });
+});
 
 router.post("/", auth.login);
 router.post("/logout", auth.logout);

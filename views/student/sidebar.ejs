@@ -84,12 +84,7 @@
       class="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 start-0 bottom-0 z-[60] w-64 bg-pirus pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 shadow-lg"
     >
       <div class="px-6">
-        <a
-          class="flex-none text-xl font-semibold text-white"
-          href="/home"
-          aria-label="Brand"
-          >Brand</a
-        >
+        <img src="/images/almanacw.png" alt="" />
       </div>
 
       <nav
@@ -99,7 +94,7 @@
         <ul class="space-y-1.5">
           <li>
             <a
-              class="flex items-center gap-x-3 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-piruss"
+              class="flex items-center gap-x-3 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-piruss <% if(title === 'Home') { %> bg-piruss text-white hover:bg-piruss <% } else { %> text-white hover:bg-piruss <% } %>"
               href="/home"
             >
               <svg
@@ -181,87 +176,64 @@
               id="users-accordion-child"
               class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden"
             >
-              <ul
-                class="hs-accordion-group ps-3 pt-2"
-                data-hs-accordion-always-open
-              >
-                <li class="hs-accordion" id="users-accordion-sub-1">
-                  <a
-                    href="/student/material/shs"
-                    type="button"
-                    class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-white hs-accordion-active:hover:bg-transparent text-sm text-white hover:text-white rounded-lg hover:bg-piruss"
-                  >
-                    Senior High School
-
-                    <svg
-                      class="hs-accordion-active:block ms-auto hidden size-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="m18 15-6-6-6 6" />
-                    </svg>
-                  </a>
-                </li>
-                <li class="hs-accordion" id="users-accordion-sub-1">
-                  <a
-                    href="/student/material/jhs"
-                    class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-white hs-accordion-active:hover:bg-transparent text-sm text-white hover:text-white rounded-lg hover:bg-piruss"
-                  >
-                    Junior High School
-
-                    <svg
-                      class="hs-accordion-active:block ms-auto hidden size-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="m18 15-6-6-6 6" />
-                    </svg>
-                  </a>
-                </li>
-                <li class="hs-accordion" id="users-accordion-sub-1">
-                  <a
-                    href="/student/material/ems"
-                    class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-white hs-accordion-active:hover:bg-transparent text-sm text-white hover:text-white rounded-lg hover:bg-piruss"
-                  >
-                    Elementary School
-
-                    <svg
-                      class="hs-accordion-active:block ms-auto hidden size-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="m18 15-6-6-6 6" />
-                    </svg>
-                  </a>
-                </li>
-              </ul>
+            <ul class="hs-accordion-group ps-3 pt-2" data-hs-accordion-always-open>
+              <li class="hs-accordion" id="users-accordion-sub-1">
+                <a
+                  href="/student/material/shs"
+                  type="button"
+                  class="flex items-center gap-x-3 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-piruss <% if(title === 'SHS Material') { %> bg-piruss text-white hover:bg-piruss <% } else { %> text-white hover:bg-piruss <% } %>"
+                  data-accordion-content-id="users-accordion-sub-1-content"
+                >
+                  Senior High School
+                </a>
+                <div
+                  id="users-accordion-sub-1-content"
+                  class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden"
+                >
+                  <!-- Content for Senior High School -->
+                </div>
+              </li>
+            
+              <li class="hs-accordion" id="users-accordion-sub-2">
+                <a
+                  href="/student/material/jhs"
+                  class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-white hs-accordion-active:hover:bg-transparent text-sm text-white hover:text-white rounded-lg hover:bg-piruss"
+                  data-accordion-content-id="users-accordion-sub-2-content"
+                >
+                  Junior High School
+                </a>
+                <div
+                  id="users-accordion-sub-2-content"
+                  class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden"
+                >
+                  <!-- Content for Junior High School -->
+                </div>
+              </li>
+            
+              <li class="hs-accordion" id="users-accordion-sub-3">
+                <a
+                  href="/student/material/ems"
+                  class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-white hs-accordion-active:hover:bg-transparent text-sm text-white hover:text-white rounded-lg hover:bg-piruss"
+                  data-accordion-content-id="users-accordion-sub-3-content"
+                >
+                  Elementary School
+                </a>
+                <div
+                  id="users-accordion-sub-3-content"
+                  class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden"
+                >
+                  <!-- Content for Elementary School -->
+                </div>
+              </li>
+            </ul>
+            
+            
             </div>
           </li>
 
           <li>
             <a
-              class="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-lg hover:bg-piruss"
+              class="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-lg hover:bg-piruss <% if(title === 'Request For Meeting') { %> bg-piruss text-white hover:bg-piruss <% } else { %> text-white hover:bg-piruss <% } %>"
               href="/student/request"
             >
               <svg
@@ -292,8 +264,8 @@
           </li>
           <li>
             <a
-              class="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-lg hover:bg-piruss"
-              href="#"
+              class="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-lg hover:bg-piruss <% if(title === 'Setting') { %> bg-piruss text-white hover:bg-piruss <% } else { %> text-white hover:bg-piruss <% } %>"
+              href="/student/settings"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -317,7 +289,7 @@
           </li>
           <li>
             <a
-              class="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-lg hover:bg-piruss"
+              class="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-lg hover:bg-piruss <% if(title === 'Notification') { %> bg-piruss text-white hover:bg-piruss <% } else { %> text-white hover:bg-piruss <% } %>"
               href="/student/notif"
             >
               <svg
@@ -368,6 +340,57 @@
         </ul>
       </nav>
     </div>
+    <script>
+     document.addEventListener("DOMContentLoaded", function() {
+  // Function to toggle the accordion
+  function toggleAccordion(contentId) {
+    var content = document.getElementById(contentId);
+    if (content) {
+      content.classList.toggle('hidden');
+      content.classList.toggle('block');
+
+      // Optionally, toggle the parent `li` class as well
+      var parentLi = content.parentElement;
+      parentLi.classList.toggle('hs-accordion-active');
+    }
+  }
+
+  // Function to open the accordion
+  function openAccordion(contentId) {
+    var content = document.getElementById(contentId);
+    if (content) {
+      content.classList.remove('hidden');
+      content.classList.add('block');
+
+      // Ensure the parent `li` has the active class
+      var parentLi = content.parentElement;
+      parentLi.classList.add('hs-accordion-active');
+    }
+  }
+
+  // Get all accordion links
+  var accordionLinks = document.querySelectorAll('.hs-accordion a');
+
+  // Add click event listeners to each accordion link
+  accordionLinks.forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      var contentId = link.getAttribute('data-accordion-content-id');
+      openAccordion(contentId);
+    });
+  });
+
+  // Automatically toggle accordion if URL matches
+  var currentURL = window.location.pathname;
+  accordionLinks.forEach(function(link) {
+    if (link.getAttribute('href') === currentURL) {
+      var contentId = link.getAttribute('data-accordion-content-id');
+      openAccordion(contentId);
+    }
+  });
+});
+
+
+    </script>
     <!-- End Sidebar -->
   </body>
 </html>
